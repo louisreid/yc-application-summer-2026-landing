@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CONTACT_EMAIL, GITHUB_REPO, SITE_URL } from "@/lib/constants";
+import PageIntro from "@/components/PageIntro";
 
 export const metadata: Metadata = {
   title: "Security",
@@ -9,9 +10,10 @@ export const metadata: Metadata = {
 
 export default function SecurityPage() {
   return (
-    <main className="mx-auto max-w-[760px] space-y-6 px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Security</h1>
-      <p>
+    <main className="prose-frame py-16 sm:py-20">
+      <PageIntro eyebrow="Responsible contact" title="Security" intro="A direct route for reporting a reproducible vulnerability in the website or CLI." />
+      <div className="article-copy mt-10">
+      <p className="border-l-2 border-warn pl-4">
         This is a contact path, not a formal security program, bug bounty, or SLA.
       </p>
       <p>
@@ -27,6 +29,7 @@ export default function SecurityPage() {
           {GITHUB_REPO}
         </a>
       </p>
+      </div>
     </main>
   );
 }

@@ -5,9 +5,10 @@ import { useState } from "react";
 type Props = {
   command: string;
   className?: string;
+  label?: string;
 };
 
-export default function InstallPill({ command, className = "" }: Props) {
+export default function InstallPill({ command, className = "", label = "Copy" }: Props) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -21,19 +22,17 @@ export default function InstallPill({ command, className = "" }: Props) {
   }
 
   return (
-    <div
-      className={`flex w-full max-w-3xl items-center gap-2 rounded-lg border border-line bg-white px-4 py-3 ${className}`}
-    >
-      <code className="min-w-0 flex-1 break-all font-mono text-sm text-ink sm:text-[15px]">
+    <div className={`flex w-full min-w-0 max-w-3xl items-center gap-2 overflow-hidden border border-ink bg-white px-4 py-3.5 shadow-[4px_4px_0_#d7dbd4] ${className}`}>
+      <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap font-mono text-xs text-ink sm:text-[15px]">
         {command}
       </code>
       <button
         type="button"
         onClick={copy}
-        className="shrink-0 rounded-md px-3 py-1.5 text-sm font-medium text-muted transition hover:bg-paper hover:text-ink"
+        className="shrink-0 border-l border-line px-3 py-1.5 font-mono text-xs font-medium uppercase tracking-wider text-muted transition hover:text-ink"
         aria-label="Copy command"
       >
-        {copied ? "Copied" : "Copy"}
+        {copied ? "Copied" : label}
       </button>
     </div>
   );

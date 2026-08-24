@@ -31,15 +31,20 @@ export default function WaitlistForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-lg border border-line bg-white p-5 text-sm" role="status">
-        <p className="font-medium text-ink">{message}</p>
+      <div className="border border-ink bg-paper p-6 text-sm shadow-[6px_6px_0_#d7dbd4]" role="status">
+        <p className="font-mono text-xs uppercase tracking-wider text-signal">Saved</p>
+        <p className="mt-3 font-medium text-ink">{message}</p>
         <p className="mt-2 text-muted">No newsletter, telemetry, or account was created.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={submit} className="space-y-4 rounded-lg border border-line bg-white p-5 text-sm">
+    <form onSubmit={submit} className="space-y-5 border border-ink bg-paper p-6 text-sm shadow-[8px_8px_0_#d7dbd4] sm:p-8">
+      <div className="border-b border-line pb-5">
+        <p className="eyebrow">Hosted CI early access</p>
+        <p className="mt-2 leading-6 text-muted">One email when there is something concrete to test. No account is created.</p>
+      </div>
       <div>
         <label htmlFor="waitlist-email" className="font-medium text-ink">Early access email</label>
         <input
@@ -50,7 +55,7 @@ export default function WaitlistForm() {
           autoComplete="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="mt-2 w-full rounded-md border border-line px-3 py-2 text-ink"
+          className="mt-2 w-full border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-ink"
           placeholder="you@example.com"
         />
       </div>
@@ -76,7 +81,7 @@ export default function WaitlistForm() {
       <button
         type="submit"
         disabled={status === "saving"}
-        className="rounded-md bg-ink px-4 py-2 font-medium text-paper disabled:opacity-60"
+        className="bg-ink px-5 py-3 font-medium text-paper transition hover:bg-signal hover:text-ink disabled:opacity-60"
       >
         {status === "saving" ? "Joining…" : "Join waitlist"}
       </button>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PageIntro from "@/components/PageIntro";
 
 export const metadata: Metadata = {
   title: "Archive",
@@ -8,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function ArchivePage() {
   return (
-    <main className="mx-auto max-w-[760px] px-6 py-20">
-      <h1 className="font-display text-2xl font-semibold">Archived</h1>
-      <p className="mt-4 text-muted">
+    <main className="prose-frame py-16 sm:py-20">
+      <PageIntro eyebrow="Historical route" title="Archived" intro="This page is retained only to explain an earlier use of the domain." />
+      <p className="mt-10 text-lg leading-8 text-muted">
         This domain previously described a field-work copilot concept. The public
         product identity is now{" "}
         <Link href="/" className="underline hover:text-ink">

@@ -52,8 +52,8 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0B0F14",
-          color: "#F7F8F5",
+          background: "#F7F8F5",
+          color: "#0B0F14",
           padding: "64px 72px",
           fontFamily: "ui-sans-serif, system-ui, sans-serif",
         }}
@@ -74,20 +74,22 @@ export default function OpenGraphImage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 36, fontWeight: 650 }}>{PRODUCT_NAME}</div>
-            <div style={{ fontSize: 20, color: "#8B938C" }}>Open-source MCP readiness CLI</div>
+            <div style={{ fontSize: 20, color: "#5C6560" }}>Open-source MCP readiness check</div>
           </div>
         </div>
-        <div style={{ fontSize: 52, fontWeight: 600, lineHeight: 1.15, maxWidth: 980 }}>
+        <div style={{ fontSize: 56, fontWeight: 650, lineHeight: 1.08, maxWidth: 990, letterSpacing: "-2px" }}>
           {HERO_HEADLINE}
         </div>
         <div
           style={{
             fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
             fontSize: 22,
-            color: "#F7F8F5",
+            color: "#0B0F14",
+            borderTop: "1px solid #0B0F14",
+            paddingTop: 24,
           }}
         >
-          npx --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor inspect memory
+          npx --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor list
         </div>
       </div>
     ),

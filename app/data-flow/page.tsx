@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/constants";
+import PageIntro from "@/components/PageIntro";
 
 export const metadata: Metadata = {
   title: "Data flow",
@@ -9,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function DataFlowPage() {
   return (
-    <main className="mx-auto max-w-[760px] space-y-6 px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Data flow</h1>
-      <p>Only flows that exist today are listed.</p>
+    <main className="prose-frame py-16 sm:py-20">
+      <PageIntro eyebrow="Trust boundary" title="Data flow" intro="Only flows that exist today are listed. Inspection and model-backed evaluation have deliberately different boundaries." />
+      <div className="article-copy mt-10">
 
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Local inspect</h2>
@@ -58,12 +59,13 @@ export default function DataFlowPage() {
         </p>
       </section>
 
-      <p className="text-sm text-muted">
+      <p className="!mt-10 border-t border-line pt-6 text-sm text-muted">
         Questions:{" "}
         <a href={`mailto:${CONTACT_EMAIL}`} className="underline">
           {CONTACT_EMAIL}
         </a>
       </p>
+      </div>
     </main>
   );
 }

@@ -27,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${PRODUCT_NAME} — MCP readiness CLI`,
+    default: `${PRODUCT_NAME} — See what agents will see`,
     template: `%s — ${PRODUCT_NAME}`,
   },
   description: `${HERO_HEADLINE} ${HERO_SUBHEAD}`,
@@ -39,6 +39,8 @@ export const metadata: Metadata = {
     "agent readiness",
     "CLI",
     "open source",
+    "MCP testing",
+    "MCP evals",
   ],
   alternates: { canonical: SITE_URL },
   robots: { index: true, follow: true },
@@ -65,7 +67,7 @@ const jsonLd = {
   operatingSystem: "macOS, Linux, Windows",
   license: "https://opensource.org/licenses/MIT",
   url: SITE_URL,
-  description: HERO_SUBHEAD,
+  description: `${HERO_HEADLINE} ${HERO_SUBHEAD}`,
   offers: {
     "@type": "Offer",
     price: "0",

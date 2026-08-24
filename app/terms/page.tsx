@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageIntro from "@/components/PageIntro";
 import {
   CONTACT_EMAIL,
   OPERATOR_COMPANY_NO,
@@ -18,9 +19,10 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <main className="mx-auto max-w-[760px] space-y-6 px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Terms</h1>
-      <p className="text-sm text-muted">Last updated: 24 Aug 2026</p>
+    <main className="prose-frame py-16 sm:py-20">
+      <PageIntro eyebrow="Public terms" title="Terms" intro="Terms for the current informational website and open-source CLI, without inventing accounts or paid services." />
+      <div className="article-copy mt-10">
+      <p className="font-mono text-xs text-muted">Last updated: 24 Aug 2026</p>
       <p>
         These terms cover the public website at coefficient.work and the
         open-source MCP Doctor CLI. They do not invent accounts, paid plans, or a
@@ -92,6 +94,7 @@ export default function TermsPage() {
           </a>
         </p>
       </section>
+      </div>
     </main>
   );
 }
