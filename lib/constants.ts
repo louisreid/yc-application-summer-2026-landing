@@ -20,12 +20,13 @@ export const LICENSE_URL = `${GITHUB_REPO}/blob/main/LICENSE`;
 export const BENCHMARK_REPO_URL = `${GITHUB_REPO}/blob/main/examples/reports/STATE-OF-MCP-2026.md`;
 
 export const INSTALL_CMD =
-  "npx @coefficient-work/mcp-doctor@latest inspect memory -o report.md";
+  "npx --yes --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor inspect memory -o report.md";
 export const BENCHMARK_CMD =
-  "npx @coefficient-work/mcp-doctor@latest benchmark -o ./reports";
+  "npx --yes --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor benchmark -o ./reports";
 
-export const OPERATOR_VERIFIED = false;
-export const WAITLIST_ENABLED = false;
+export function isWaitlistEnabled() {
+  return process.env.WAITLIST_ENABLED === "true";
+}
 
 export const NAMESPACE_NOTE =
   "Public GitHub and npm identity is coefficient-work. Install @coefficient-work/mcp-doctor; do not install the unrelated unscoped mcp-doctor package.";
@@ -42,7 +43,7 @@ export const FAQ = [
   },
   {
     q: "Do I need an API key?",
-    a: "No for inspect and benchmark. Eval uses your own Vercel AI Gateway or OpenAI key. Prompts and reports stay on your machine.",
+    a: "No for inspect and benchmark. Eval uses your own OpenRouter, OpenAI, Anthropic, AI Gateway, or Ollama credential. Credential values stay local; tasks, tool schemas, calls, and results go to the selected provider.",
   },
   {
     q: "Does it work with Stainless or Speakeasy output?",
@@ -54,7 +55,7 @@ export const FAQ = [
   },
   {
     q: "Who operates this?",
-    a: "Roundtable Design Ltd (England and Wales, company no. 11924746), trading as Roundtable Studio. Waitlist collection and product telemetry stay off.",
+    a: "Roundtable Design Ltd (England and Wales, company no. 11924746), trading as Roundtable Studio. The optional waitlist stores your email and consent; product telemetry is off.",
   },
   {
     q: "Pricing?",

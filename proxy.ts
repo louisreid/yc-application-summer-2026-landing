@@ -21,27 +21,13 @@ function safeEqual(a: string, b: string): boolean {
   return mismatch === 0;
 }
 
-function credentialsMatch(
-  providedUser: string,
-  providedPass: string,
-  expectedUser: string,
-  expectedPass: string,
-): boolean {
-  return (
-    safeEqual(providedUser, expectedUser) &&
-    safeEqual(providedPass, expectedPass)
-  );
-}
-
 function shouldGate(host: string): boolean {
   return host === STAGING_HOST || host.endsWith(".vercel.app");
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const host = (req.headers.get("host") || "").split(":")[0].toLowerCase();
-  if (!shouldGate(host)) {
-    return NextResponse.next();
-  }
+  if (!shouldGate(host)) return NextResponse.next();
 
   const expectedUser = process.env.STAGING_USER || "coefficient";
   const expectedPass = process.env.STAGING_PASSWORD;
@@ -53,9 +39,7 @@ export function middleware(req: NextRequest) {
   }
 
   const header = req.headers.get("authorization");
-  if (!header?.startsWith("Basic ")) {
-    return unauthorized();
-  }
+  if (!header?.startsWith("Basic ")) return unauthorized();
 
   let decoded = "";
   try {
@@ -67,8 +51,7 @@ export function middleware(req: NextRequest) {
   const colon = decoded.indexOf(":");
   const user = colon === -1 ? decoded : decoded.slice(0, colon);
   const pass = colon === -1 ? "" : decoded.slice(colon + 1);
-
-  if (!credentialsMatch(user, pass, expectedUser, expectedPass)) {
+  if (!safeEqual(user, expectedUser) || !safeEqual(pass, expectedPass)) {
     return unauthorized();
   }
 

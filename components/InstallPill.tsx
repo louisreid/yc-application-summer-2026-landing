@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { track } from "@vercel/analytics";
 
 type Props = {
   command: string;
@@ -15,7 +14,6 @@ export default function InstallPill({ command, className = "" }: Props) {
     try {
       await navigator.clipboard.writeText(command);
       setCopied(true);
-      track("install_command_copy");
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
       /* ignore */
