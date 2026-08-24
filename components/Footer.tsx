@@ -9,17 +9,19 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line bg-paper py-12">
-      <div className="mx-auto max-w-[760px] space-y-4 px-6 text-center text-sm text-muted">
-        <p className="text-ink">{PRODUCT_NAME}</p>
-        <p className="text-xs">{PRODUCT_CREDIT}</p>
-        <p>An early-stage open-source project.</p>
-        <p>
+    <footer className="border-t border-ink bg-paper py-12">
+      <div className="site-frame grid gap-10 text-sm text-muted md:grid-cols-[1fr_auto] md:items-start">
+        <div className="max-w-md">
+          <p className="text-base font-semibold text-ink">{PRODUCT_NAME}</p>
+          <p className="mt-2">Open-source evidence for MCP release decisions.</p>
+          <p className="mt-1 text-xs">{PRODUCT_CREDIT} · An early-stage project.</p>
+          <p className="mt-5">
           <a href={`mailto:${CONTACT_EMAIL}`} className="underline hover:text-ink">
             {CONTACT_EMAIL}
           </a>
-        </p>
-        <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-2">
+          </p>
+        </div>
+        <nav className="grid grid-cols-2 gap-x-8 gap-y-2 md:text-right" aria-label="Footer navigation">
           <Link href="/privacy" className="hover:text-ink hover:underline">
             Privacy
           </Link>
@@ -44,7 +46,7 @@ export default function Footer() {
             GitHub
           </a>
         </nav>
-        <p className="pt-2 text-xs leading-relaxed">{NAMESPACE_NOTE}</p>
+        <p className="border-t border-line pt-6 text-xs leading-relaxed md:col-span-2">{NAMESPACE_NOTE}</p>
       </div>
     </footer>
   );

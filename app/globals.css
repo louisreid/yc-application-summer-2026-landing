@@ -10,12 +10,26 @@
   --line: #d7dbd4;
   --status-warn: #c47b16;
   --status-fail: #c0362c;
+  --paper-deep: #eef0eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   background: var(--paper);
   color: var(--ink);
+  text-rendering: optimizeLegibility;
+  background-image:
+    linear-gradient(rgba(11, 15, 20, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 15, 20, 0.012) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 .font-display {
@@ -27,11 +41,104 @@ body {
 }
 
 .section-gap {
-  @apply py-16 md:py-24;
+  @apply py-20 md:py-28;
+}
+
+.site-frame {
+  @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+}
+
+.prose-frame {
+  @apply mx-auto w-full max-w-[760px] px-5 sm:px-8;
+}
+
+.eyebrow {
+  @apply font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-muted;
+}
+
+.section-rule {
+  @apply border-t border-line;
+}
+
+.article-copy {
+  @apply text-[17px] leading-8 text-ink;
+}
+
+.article-copy h2 {
+  @apply mt-12 text-xl font-semibold tracking-[-0.02em] text-ink;
+}
+
+.article-copy p,
+.article-copy ul {
+  @apply mt-4;
+}
+
+.article-copy a {
+  @apply underline decoration-line underline-offset-4 transition-colors hover:decoration-ink;
+}
+
+.article-copy code {
+  @apply font-mono text-[0.9em];
+}
+
+.article-copy table {
+  @apply text-sm;
+}
+
+.diagnostic-grid {
+  background-image:
+    linear-gradient(rgba(247, 248, 245, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 248, 245, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.evidence-reveal {
+  animation: evidence-in 480ms ease-out both;
+}
+
+.evidence-reveal:nth-child(2) {
+  animation-delay: 180ms;
+}
+
+.evidence-reveal:nth-child(3) {
+  animation-delay: 360ms;
+}
+
+.evidence-reveal:nth-child(4) {
+  animation-delay: 540ms;
+}
+
+@keyframes evidence-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--signal);
   outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(22, 163, 106, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
 }

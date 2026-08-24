@@ -20,7 +20,9 @@ export const LICENSE_URL = `${GITHUB_REPO}/blob/main/LICENSE`;
 export const BENCHMARK_REPO_URL = `${GITHUB_REPO}/blob/main/examples/reports/STATE-OF-MCP-2026.md`;
 
 export const INSTALL_CMD =
-  "npx --yes --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor inspect memory -o report.md";
+  "npx --yes --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor list";
+export const INSPECT_CMD =
+  "npx --yes --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor inspect <name> -o report.md";
 export const BENCHMARK_CMD =
   "npx --yes --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor benchmark -o ./reports";
 
@@ -32,14 +34,14 @@ export const NAMESPACE_NOTE =
   "Public GitHub and npm identity is coefficient-work. Install @coefficient-work/mcp-doctor; do not install the unrelated unscoped mcp-doctor package.";
 
 export const HERO_HEADLINE =
-  "Know whether agents can use your MCP before you ship.";
+  "Your MCP can connect — and still fail in a real agent run.";
 export const HERO_SUBHEAD =
-  "An open-source CLI that inspects schemas, runs task evals, and produces a local readiness report.";
+  "Inspect the tool contracts models actually receive, find agent-facing defects, and record real execution evidence across selected model families.";
 
 export const FAQ = [
   {
-    q: "How is this different from MCPJam?",
-    a: "MCPJam is a debug playground. MCP Doctor is a local CLI that inspects schemas, runs optional task evals, and writes a readiness report you keep on disk.",
+    q: "What does a passing eval prove?",
+    a: "It proves that the selected model produced at least one real, non-error result from your MCP. It does not formally prove that every part of an arbitrary natural-language task was semantically correct.",
   },
   {
     q: "Do I need an API key?",
@@ -47,7 +49,7 @@ export const FAQ = [
   },
   {
     q: "Does it work with Stainless or Speakeasy output?",
-    a: "Yes. MCP Doctor inspects any MCP server, regardless of how it was generated.",
+    a: "Yes. MCP Doctor connects to the live MCP surface, whether it was generated, framework-based, or hand-written.",
   },
   {
     q: "Is it open source?",
@@ -64,8 +66,8 @@ export const FAQ = [
 ] as const;
 
 export const COMPARISON_ROWS = [
-  { need: "Generate MCP from OpenAPI", use: "Stainless, Speakeasy" },
-  { need: "Debug OAuth in a playground", use: "MCPJam Inspector" },
-  { need: "pytest eval harness", use: "mcp-eval" },
-  { need: "Inspect readiness before you ship", use: "MCP Doctor", highlight: true },
+  { need: "Generate an MCP from an API", use: "A generator or framework" },
+  { need: "Interactively debug a connection", use: "An inspector or playground" },
+  { need: "Verify protocol conformance", use: "A conformance suite" },
+  { need: "Review what agents receive and execute", use: "MCP Doctor", highlight: true },
 ] as const;

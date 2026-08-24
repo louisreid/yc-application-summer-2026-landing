@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CURRENT_BENCHMARK } from "@/lib/benchmark";
 import { BENCHMARK_CMD, BENCHMARK_REPO_URL } from "@/lib/constants";
 import InstallPill from "@/components/InstallPill";
+import PageIntro from "@/components/PageIntro";
 
 export const metadata: Metadata = {
   title: CURRENT_BENCHMARK.title,
@@ -14,37 +15,31 @@ export default function BenchmarkPage() {
   const data = CURRENT_BENCHMARK;
 
   return (
-    <main className="section-gap px-6 pb-20">
-      <div className="mx-auto max-w-[760px] space-y-8">
-        <div className="space-y-2">
-          <Link href="/" className="text-sm text-muted hover:underline">
-            ← MCP Doctor
-          </Link>
-          <h1 className="font-display text-[28px] font-semibold sm:text-[36px]">
-            {data.title}
-          </h1>
-          <p className="text-muted">{data.methodology}</p>
-          <p className="font-mono text-sm text-muted">
+    <main className="site-frame py-14 sm:py-20">
+      <PageIntro eyebrow="Dated public observation" title={data.title} intro={data.methodology} />
+      <div className="space-y-12 pt-10">
+        <div>
+          <p className="font-mono text-xs text-muted">
             {data.version} · observed {data.observedAt} · CLI {data.cliVersion} · commit{" "}
             {data.commit} · {data.connectedCount}/{data.catalogSize} connected
           </p>
         </div>
 
-        <div className="overflow-x-auto rounded-lg border border-line bg-white">
-          <table className="w-full text-left text-sm">
+        <div className="overflow-x-auto border border-ink bg-white">
+          <table className="w-full min-w-[720px] text-left text-sm">
             <thead>
-              <tr className="border-b border-line text-muted">
-                <th className="px-4 py-3 font-medium">Rank</th>
-                <th className="px-4 py-3 font-medium">Server</th>
-                <th className="px-4 py-3 font-medium">Grade</th>
-                <th className="px-4 py-3 font-medium">Score</th>
-                <th className="px-4 py-3 font-medium">Tools</th>
-                <th className="px-4 py-3 font-medium">Tokens</th>
+              <tr className="border-b border-ink font-mono text-[10px] uppercase tracking-wider text-muted">
+                <th className="px-4 py-4 font-normal">Rank</th>
+                <th className="px-4 py-4 font-normal">Server</th>
+                <th className="px-4 py-4 font-normal">Grade</th>
+                <th className="px-4 py-4 font-normal">Score</th>
+                <th className="px-4 py-4 font-normal">Tools</th>
+                <th className="px-4 py-4 font-normal">Tokens</th>
               </tr>
             </thead>
             <tbody>
               {data.rows.map((row, i) => (
-                <tr key={row.server} className="border-b border-line last:border-0">
+                  <tr key={row.server} className="border-b border-line transition-colors last:border-0 hover:bg-paper">
                   <td className="px-4 py-3 text-muted">{i + 1}</td>
                   <td className="px-4 py-3">{row.server}</td>
                   <td className="px-4 py-3 font-mono">{row.grade}</td>
@@ -57,8 +52,10 @@ export default function BenchmarkPage() {
           </table>
         </div>
 
-        <section className="space-y-3 text-muted">
-          <h2 className="font-display text-lg font-semibold text-ink">Awards ({data.version})</h2>
+        <div className="grid gap-10 lg:grid-cols-2">
+        <section className="border-t border-ink pt-6 text-muted">
+          <p className="eyebrow">Awards · {data.version}</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-ink">Observed standouts</h2>
           <ul className="list-inside list-disc space-y-1 text-sm">
             {data.awards.map((award) => (
               <li key={award.label}>
@@ -68,10 +65,9 @@ export default function BenchmarkPage() {
           </ul>
         </section>
 
-        <section className="space-y-3 text-muted">
-          <h2 className="font-display text-lg font-semibold text-ink">
-            Connection failures ({data.version})
-          </h2>
+        <section className="border-t border-ink pt-6 text-muted">
+          <p className="eyebrow">Connection failures · {data.version}</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-ink">What could not be scored</h2>
           <ul className="list-inside list-disc space-y-1 text-sm">
             {data.connectionFailures.map((row) => (
               <li key={row.server}>
@@ -80,16 +76,20 @@ export default function BenchmarkPage() {
             ))}
           </ul>
         </section>
+        </div>
 
-        <section className="space-y-3 text-sm text-muted">
+        <section className="border-l-2 border-warn pl-5 text-sm leading-6 text-muted">
           {data.notes.map((note) => (
             <p key={note}>{note}</p>
           ))}
         </section>
 
-        <section className="space-y-4">
-          <h2 className="font-display text-lg font-semibold">Reproduce</h2>
+        <section className="border-t border-ink pt-8">
+          <p className="eyebrow">Reproduce the observation</p>
+          <h2 className="mt-3 text-2xl font-semibold">Run the dated catalog yourself</h2>
+          <div className="mt-6">
           <InstallPill command={BENCHMARK_CMD} />
+          </div>
           <p className="text-sm text-muted">
             Source report on{" "}
             <a

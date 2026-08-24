@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PageIntro from "@/components/PageIntro";
 import {
   CONTACT_EMAIL,
   GITHUB_REPO,
@@ -20,9 +21,10 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="mx-auto max-w-[760px] space-y-6 px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Privacy</h1>
-      <p className="text-sm text-muted">Last updated: 24 Aug 2026</p>
+    <main className="prose-frame py-16 sm:py-20">
+      <PageIntro eyebrow="Public privacy notice" title="Privacy" intro="What the MCP Doctor website and CLI actually collect today—not a description of a future product." />
+      <div className="article-copy mt-10">
+      <p className="font-mono text-xs text-muted">Last updated: 24 Aug 2026</p>
       <p>
         This page describes the data flows that exist now for the MCP Doctor
         website and CLI. It does not describe a future product.
@@ -102,6 +104,7 @@ export default function PrivacyPage() {
           </a>
         </p>
       </section>
+      </div>
     </main>
   );
 }
