@@ -20,9 +20,9 @@ export const LICENSE_URL = `${GITHUB_REPO}/blob/main/LICENSE`;
 export const BENCHMARK_REPO_URL = `${GITHUB_REPO}/blob/main/examples/reports/STATE-OF-MCP-2026.md`;
 
 export const INSTALL_CMD =
-  "npx --yes --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor list";
+  "npx --yes @coefficient-work/mcp-doctor@0.4.7 list";
 export const INSPECT_CMD =
-  "npx --yes --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor inspect <name> -o report.md";
+  "npx --yes @coefficient-work/mcp-doctor@0.4.7 inspect <name> -o report.md";
 export const BENCHMARK_CMD =
   "npx --yes --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor benchmark -o ./reports";
 
