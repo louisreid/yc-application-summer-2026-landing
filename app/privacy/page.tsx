@@ -22,7 +22,7 @@ export default function PrivacyPage() {
   return (
     <main className="mx-auto max-w-[760px] space-y-6 px-6 py-16">
       <h1 className="text-3xl font-semibold tracking-tight">Privacy</h1>
-      <p className="text-sm text-muted">Last updated: 19 Aug 2026</p>
+      <p className="text-sm text-muted">Last updated: 24 Aug 2026</p>
       <p>
         This page describes the data flows that exist now for the MCP Doctor
         website and CLI. It does not describe a future product.
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
             {CONTACT_EMAIL}
           </a>
         </p>
-        <p>Waitlist collection and product telemetry remain off.</p>
+        <p>The optional waitlist is open. Product telemetry remains off.</p>
       </section>
 
       <section className="space-y-3">
@@ -51,15 +51,12 @@ export default function PrivacyPage() {
             Hosting: Vercel serves this site. Vercel may process standard request
             logs as a processor.
           </li>
+          <li>No product analytics, tracking cookies, or advertising pixels.</li>
           <li>
-            Analytics: Vercel Web Analytics, cookieless aggregate page views and
-            named events. Event names only. No email, MCP endpoints, or free-text
-            properties.
-          </li>
-          <li>No accounts, no cookies for tracking, no advertising pixels.</li>
-          <li>
-            Waitlist form: disabled. Posts to{" "}
-            <code className="font-mono text-sm">/api/waitlist</code> are rejected.
+            Waitlist form: if you opt in, we store your normalized email address,
+            consent time, privacy-notice version, and signup source in a Neon
+            Postgres database connected to Vercel. Duplicate submissions do not
+            create another record.
           </li>
         </ul>
       </section>
@@ -75,11 +72,11 @@ export default function PrivacyPage() {
           </li>
           <li>
             <code className="font-mono text-sm">eval</code> uses a model key you
-            supply. Prompts stay with you and that provider.
+            supply. Credential values stay on your machine; the task, tool schemas,
+            calls, and results are sent to the selected provider.
           </li>
           <li>
-            Anonymous CLI telemetry is designed but ingestion is off until a
-            matching privacy notice exists for that flow.
+            MCP Doctor does not ingest CLI telemetry.
           </li>
         </ul>
       </section>
@@ -88,7 +85,8 @@ export default function PrivacyPage() {
         <h2 className="text-xl font-semibold">Email you send us</h2>
         <p>
           If you write to {CONTACT_EMAIL}, we receive whatever you include in that
-          message. There is no automated marketing list.
+          message. Waitlist email is used only for MCP Doctor early access and can
+          be removed by writing to us.
         </p>
       </section>
 

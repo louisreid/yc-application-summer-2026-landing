@@ -9,6 +9,11 @@ export const metadata: Metadata = {
 
 const ENTRIES = [
   {
+    date: "2026-08-24",
+    title: "CLI v0.4.7 launch candidate",
+    body: "Pinned public commands to the scoped 0.4.7 package, documented OpenRouter and direct-provider evals, clarified execution-proof semantics, removed product analytics, and opened the consented early-access waitlist.",
+  },
+  {
     date: "2026-08-19",
     title: "Product name is MCP Doctor",
     body: "Dropped parent-brand labelling from header, titles, and metadata. Replaced the three-color readiness tile with a monotone medical plus. Waitlist, telemetry ingestion, and checkout stay off.",

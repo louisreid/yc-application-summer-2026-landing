@@ -8,7 +8,13 @@ CREATE TABLE IF NOT EXISTS waitlist_signups (
   interest TEXT DEFAULT 'early-access',
   mcp_url TEXT,
   source TEXT DEFAULT 'direct',
+  consented_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  privacy_version TEXT NOT NULL DEFAULT '2026-08-24',
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+ALTER TABLE waitlist_signups
+  ADD COLUMN IF NOT EXISTS consented_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  ADD COLUMN IF NOT EXISTS privacy_version TEXT NOT NULL DEFAULT '2026-08-24';
 
 CREATE INDEX IF NOT EXISTS waitlist_signups_created_at ON waitlist_signups (created_at DESC);

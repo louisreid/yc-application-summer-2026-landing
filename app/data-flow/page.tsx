@@ -26,28 +26,36 @@ export default function DataFlowPage() {
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Eval</h2>
         <p>
-          Optional. Uses a model key you provide. Prompts, tasks, and reports stay
-          with you and that model provider. MCP Doctor does not store them.
+          Optional. Uses a model key you provide. Credential values stay on your
+          machine; the task, tool schemas, calls, and results are sent to the
+          selected provider. MCP Doctor does not store them.
         </p>
       </section>
 
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Website</h2>
         <p>
-          Pages are hosted on Vercel. Aggregate, cookieless Web Analytics may
-          record page views and named events such as install-command copy. Event
-          properties never include email, endpoints, or free text.
+          Pages are hosted on Vercel. Product analytics and install-copy tracking
+          are disabled for this launch.
         </p>
       </section>
 
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Not enabled</h2>
         <ul className="list-disc space-y-2 pl-6">
-          <li>Waitlist / email collection</li>
           <li>CLI telemetry ingestion</li>
           <li>Stripe checkout</li>
           <li>Accounts</li>
         </ul>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-semibold">Optional waitlist</h2>
+        <p>
+          With your explicit consent, the website sends your email to its Vercel
+          API route and stores it in a connected Neon Postgres database. Duplicate
+          addresses are treated as an existing signup. No MCP data is collected.
+        </p>
       </section>
 
       <p className="text-sm text-muted">

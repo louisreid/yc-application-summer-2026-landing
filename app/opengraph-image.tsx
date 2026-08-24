@@ -1,7 +1,6 @@
 import { ImageResponse } from "next/og";
 import { HERO_HEADLINE, PRODUCT_NAME } from "@/lib/constants";
 
-export const runtime = "edge";
 export const alt = "MCP Doctor";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -88,7 +87,7 @@ export default function OpenGraphImage() {
             color: "#F7F8F5",
           }}
         >
-          npx @coefficient-work/mcp-doctor@latest inspect memory -o report.md
+          npx --package @coefficient-work/mcp-doctor@0.4.7 mcp-doctor inspect memory
         </div>
       </div>
     ),

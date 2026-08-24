@@ -20,7 +20,7 @@ export default function TermsPage() {
   return (
     <main className="mx-auto max-w-[760px] space-y-6 px-6 py-16">
       <h1 className="text-3xl font-semibold tracking-tight">Terms</h1>
-      <p className="text-sm text-muted">Last updated: 19 Aug 2026</p>
+      <p className="text-sm text-muted">Last updated: 24 Aug 2026</p>
       <p>
         These terms cover the public website at coefficient.work and the
         open-source MCP Doctor CLI. They do not invent accounts, paid plans, or a
@@ -47,9 +47,9 @@ export default function TermsPage() {
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">3. Website</h2>
         <p>
-          The site is provided as-is. There are no user accounts, no waitlist
-          collection, and no checkout. You may copy the install command and read
-          the documentation.
+          The site is provided as-is. There are no user accounts or checkout. The
+          optional waitlist records an email address only after explicit consent.
+          You may copy the install command and read the documentation without joining.
         </p>
       </section>
 
@@ -65,7 +65,7 @@ export default function TermsPage() {
         <h2 className="text-xl font-semibold">5. Acceptable use</h2>
         <p>
           Do not use the site or CLI for unlawful access, abuse, or to submit
-          malware. The waitlist API rejects submissions.
+          malware or submit another person&apos;s email without permission.
         </p>
       </section>
 

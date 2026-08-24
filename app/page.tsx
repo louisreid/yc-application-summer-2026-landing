@@ -47,7 +47,7 @@ export default function HomePage() {
             <h2 className="font-display text-2xl font-semibold">What the CLI does</h2>
             <ul className="list-inside list-disc space-y-2 text-muted">
               <li>Inspect schemas, tools, and token cost without an API key</li>
-              <li>Run optional task evals with your own model key</li>
+              <li>Run optional task evals across OpenAI, Anthropic, and Google models</li>
               <li>Write a markdown readiness report you keep locally</li>
             </ul>
             <Link href="/benchmark" className="text-sm font-medium underline">
@@ -56,13 +56,13 @@ export default function HomePage() {
           </div>
           <TerminalCard
             lines={[
-              { text: `$ npx ${NPM_PACKAGE}@latest inspect puppeteer -o report.md` },
+              { text: `$ npx --yes --package ${NPM_PACKAGE}@0.4.7 mcp-doctor inspect puppeteer -o report.md` },
               { text: "" },
               { text: "Grade: B | Tools: 7 | Tokens: 612", tone: "success" },
               { text: "" },
               { text: "Recommended improvements", tone: "muted" },
               { text: "  navigate: description too short" },
-              { text: "  screenshot: missing input schema hints" },
+              { text: "  screenshot: missing output schema" },
             ]}
           />
         </div>
@@ -123,9 +123,9 @@ export default function HomePage() {
             <div className="rounded-lg border border-line bg-white p-6">
               <h3 className="font-display text-lg font-semibold">Hosted CI later</h3>
               <ul className="mt-4 space-y-2 text-sm text-muted">
-                <li>eval via your own AI Gateway key</li>
+                <li>eval via OpenRouter or a direct provider key</li>
                 <li>GitHub Action scorecard is not shipping yet</li>
-                <li>No checkout and no waitlist until those exist</li>
+                <li>Execution proof means a real non-error MCP result</li>
               </ul>
               <div className="mt-6">
                 <WaitlistForm />

@@ -12,5 +12,5 @@ Staging is `https://staging.coefficient.work` (git branch `codex/mcp-doctor-rebr
 
 1. Transfer this repository and rename it to `mcp-doctor-site`.
 2. Reconnect the Vercel GitHub integration if it breaks.
-3. Enable Vercel Web Analytics in the project dashboard (cookieless aggregate).
-4. Keep waitlist and Stripe off until the legal operator is verified and hosted CI exists.
+3. Keep Vercel Web Analytics and other product telemetry disabled for launch.
+4. Keep Stripe off. The consented waitlist uses the connected Neon database.

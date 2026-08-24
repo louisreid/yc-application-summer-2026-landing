@@ -1,7 +1,5 @@
-/**
- * Waitlist helpers kept for a later restore after the legal operator is verified.
- * Collection is currently disabled: app/api/waitlist/route.ts rejects all posts.
- */
+import { neon } from "@neondatabase/serverless";
+
 export type WaitlistPayload = {
   email: string;
   name?: string;
@@ -14,6 +12,11 @@ export type WaitlistPayload = {
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function optionalText(value: unknown, maxLength: number): string | undefined {
+  if (value == null || value === "") return undefined;
+  return String(value).trim().slice(0, maxLength) || undefined;
+}
 
 export function validateWaitlistPayload(body: unknown): {
   ok: true;
@@ -30,7 +33,7 @@ export function validateWaitlistPayload(body: unknown): {
   }
 
   const email = String(b.email ?? "").trim().toLowerCase();
-  if (!EMAIL_RE.test(email)) {
+  if (!EMAIL_RE.test(email) || email.length > 254) {
     return { ok: false, error: "Valid email required" };
   }
 
@@ -42,12 +45,31 @@ export function validateWaitlistPayload(body: unknown): {
     ok: true,
     data: {
       email,
-      name: b.name ? String(b.name).trim() : undefined,
-      company: b.company ? String(b.company).trim() : undefined,
-      role: b.role ? String(b.role) : undefined,
-      interest: b.interest ? String(b.interest) : "early-access",
+      name: optionalText(b.name, 100),
+      company: optionalText(b.company, 120),
+      role: optionalText(b.role, 80),
+      interest: optionalText(b.interest, 80) ?? "product-hunt",
       consent: true,
-      source: b.source ? String(b.source) : "direct",
+      source: optionalText(b.source, 80) ?? "coefficient.work",
     },
   };
+}
+
+export async function createWaitlistSignup(
+  data: WaitlistPayload,
+  connectionString = process.env.DATABASE_URL,
+): Promise<{ duplicate: boolean }> {
+  if (!connectionString) throw new Error("Waitlist database is not configured");
+  const sql = neon(connectionString);
+  const inserted = await sql`
+    INSERT INTO waitlist_signups (
+      email, name, company, role, interest, source, consented_at, privacy_version
+    ) VALUES (
+      ${data.email}, ${data.name ?? null}, ${data.company ?? null}, ${data.role ?? null},
+      ${data.interest ?? "product-hunt"}, ${data.source ?? "coefficient.work"}, NOW(), '2026-08-24'
+    )
+    ON CONFLICT (email) DO NOTHING
+    RETURNING email
+  `;
+  return { duplicate: inserted.length === 0 };
 }
